@@ -1,10 +1,22 @@
 {
-  "owners": [
-    { "name": "Astxn", "role": "Owner" },
-    { "name": "Denis", "role": "Owner" }
-  ],
-  "developers": [
-    { "name": "NotMythxc4l", "role": "Developer" },
-    { "name": "Covasius", "role": "Developer" }
-  ]
+  "owners": {
+    "color": "#00eeff",
+    "members": [
+      { "name": "Astxn", "role": "Owner" },
+      { "name": "Denis", "role": "Owner" }
+    ]
+  },
+  "managers": {
+    "color": "#00eeff",
+    "members": [
+      { "name": "MultiCoolStudios", "role": "Manager" }
+    ]
+  },
+  "developers": {
+    "color": "#00eeff",
+    "members": [
+      { "name": "NotMythxc4l", "role": "Developer" },
+      { "name": "Covasius", "role": "Developer" }
+    ]
+  }
 }
