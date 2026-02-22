@@ -1,0 +1,10 @@
+{
+  "owners": [
+    { "name": "Astxn", "role": "Owner" },
+    { "name": "Denis", "role": "Owner" }
+  ],
+  "developers": [
+    { "name": "NotMythxc4l", "role": "Developer" },
+    { "name": "Covasius", "role": "Developer" }
+  ]
+}

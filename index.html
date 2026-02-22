@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Chill Server</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    @font-face {
+      font-family: 'MultiCraft';
+      src: url('MultiCraftFont.ttf') format('truetype');
+      font-weight: normal;
+      font-style: normal;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:       #1a1a2e;
+      --surface:  #22223b;
+      --surface2: #2d2d4a;
+      --border:   #3a3a5c;
+      --accent:   #a8dadc;
+      --accent2:  #c9b8f5;
+      --warm:     #f4a261;
+      --text:     #e8e6f0;
+      --muted:    #8888aa;
+      --font:     'MultiCraft', 'Nunito', sans-serif;
+      --font-mc:  'MultiCraft', 'Nunito', sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      width: 500px; height: 500px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(168,218,220,0.07) 0%, transparent 70%);
+      top: -100px; left: -100px;
+      pointer-events: none; z-index: 0;
+    }
+    body::after {
+      content: '';
+      position: fixed;
+      width: 400px; height: 400px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(201,184,245,0.07) 0%, transparent 70%);
+      bottom: -80px; right: -80px;
+      pointer-events: none; z-index: 0;
+    }
+
+    nav {
+      position: sticky;
+      top: 0; z-index: 100;
+      background: rgba(26,26,46,0.9);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 2.5rem;
+      height: 64px;
+    }
+
+    .nav-logo {
+      font-family: var(--font-mc);
+      font-size: 1.3rem;
+      color: var(--accent);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .nav-logo .dot {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 8px var(--accent);
+      animation: pulse 2.5s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50%       { opacity: 0.4; transform: scale(0.7); }
+    }
+
+    .nav-tabs { display: flex; gap: 0.25rem; }
+
+    .tab-btn {
+      background: none; border: none;
+      color: var(--muted);
+      font-family: var(--font);
+      font-weight: 700; font-size: 0.85rem;
+      padding: 0.45rem 1.1rem;
+      cursor: pointer; border-radius: 50px;
+      transition: all 0.2s;
+    }
+    .tab-btn:hover { color: var(--text); background: var(--surface2); }
+    .tab-btn.active { color: var(--bg); background: var(--accent); }
+
+    main {
+      position: relative; z-index: 1;
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 4rem 2rem 6rem;
+    }
+
+    .section { display: none; animation: fadeUp 0.4s ease; }
+    .section.active { display: block; }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(12px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .hero-title {
+      font-family: var(--font-mc);
+      font-size: clamp(3rem, 9vw, 6rem);
+      line-height: 1.05;
+      margin-bottom: 1.2rem;
+      background: linear-gradient(135deg, var(--accent) 0%, var(--accent2) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero-code {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.65rem;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 0.6rem 1.1rem;
+      margin-bottom: 2rem;
+    }
+
+    .hero-code-label {
+      font-size: 0.72rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--muted);
+    }
+
+    .hero-code-value {
+      font-family: 'Courier New', monospace;
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--accent2);
+      letter-spacing: 0.08em;
+    }
+
+    .copy-btn {
+      background: none; border: none;
+      cursor: pointer;
+      color: var(--muted);
+      font-size: 0.78rem;
+      font-weight: 700;
+      font-family: var(--font);
+      padding: 0.2rem 0.5rem;
+      border-radius: 5px;
+      transition: color 0.2s, background 0.2s;
+    }
+    .copy-btn:hover { color: var(--accent); background: var(--surface2); }
+
+    .intro-divider {
+      width: 48px; height: 3px;
+      border-radius: 4px;
+      background: linear-gradient(90deg, var(--accent), var(--accent2));
+      margin: 2rem 0;
+    }
+
+    .intro-body {
+      font-size: 1rem;
+      color: var(--muted);
+      line-height: 1.85;
+      max-width: 580px;
+    }
+
+    .section-header { margin-bottom: 2.5rem; }
+
+    .section-title {
+      font-size: 1.9rem; font-weight: 900;
+      margin-bottom: 0.3rem;
+    }
+
+    .section-sub { color: var(--muted); font-size: 0.875rem; }
+
+    .team-group { margin-bottom: 2.5rem; }
+
+    .team-group-label {
+      font-size: 0.72rem; font-weight: 800;
+      text-transform: uppercase; letter-spacing: 0.15em;
+      color: var(--muted);
+      margin-bottom: 0.9rem; padding-left: 0.25rem;
+      display: flex; align-items: center; gap: 0.6rem;
+    }
+    .team-group-label::after {
+      content: ''; flex: 1;
+      height: 1px; background: var(--border);
+    }
+
+    .team-grid { display: flex; flex-wrap: wrap; gap: 0.9rem; }
+
+    .member-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 1.1rem 1.5rem;
+      transition: border-color 0.2s, transform 0.2s, background 0.2s;
+      flex: 1; min-width: 190px;
+    }
+    .member-card:hover {
+      border-color: var(--accent2);
+      background: var(--surface2);
+      transform: translateY(-2px);
+    }
+    .member-card.owner:hover { border-color: var(--warm); }
+
+    .member-name {
+      font-weight: 800; font-size: 1rem;
+      margin-bottom: 0.2rem;
+    }
+
+    .member-role {
+      font-size: 0.74rem; font-weight: 700;
+      color: var(--accent2);
+    }
+    .member-card.owner .member-role { color: var(--warm); }
+
+    .contact-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 2.5rem 2rem;
+      max-width: 420px;
+      text-align: center;
+    }
+
+    .contact-card p {
+      color: var(--muted);
+      font-size: 0.95rem;
+      line-height: 1.7;
+      margin-bottom: 1.8rem;
+    }
+
+    .contact-btn {
+      display: inline-block;
+      background: var(--accent);
+      color: var(--bg);
+      font-family: var(--font);
+      font-weight: 800;
+      font-size: 0.95rem;
+      padding: 0.75rem 2rem;
+      border-radius: 50px;
+      text-decoration: none;
+      transition: opacity 0.2s, transform 0.15s;
+    }
+    .contact-btn:hover { opacity: 0.85; transform: translateY(-2px); }
+
+    @media (max-width: 580px) {
+      nav { padding: 0 1.25rem; }
+      .tab-btn { padding: 0.4rem 0.75rem; font-size: 0.78rem; }
+      main { padding: 2.5rem 1.25rem 4rem; }
+      .member-card { min-width: 100%; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">
+    <div class="dot"></div>
+    Chill Server
+  </div>
+  <div class="nav-tabs">
+    <button class="tab-btn active" onclick="showTab('intro', this)">Home</button>
+    <button class="tab-btn" onclick="showTab('team', this)">Team</button>
+    <button class="tab-btn" onclick="showTab('report', this)">Contact</button>
+  </div>
+</nav>
+
+<main>
+
+  <!-- HOME -->
+  <section id="intro" class="section active">
+
+    <h1 class="hero-title">Chill Server</h1>
+
+    <div class="hero-code">
+      <span class="hero-code-label">Server Code</span>
+      <span class="hero-code-value" id="serverCode">IUIOFJRN</span>
+      <button class="copy-btn" onclick="copyCode()">Copy</button>
+    </div>
+
+    <div class="intro-divider"></div>
+
+    <div class="intro-body">
+      <p>Join our server! Use code <strong style="color:var(--accent2)">IUIOFJRN</strong> to hop in.</p>
+    </div>
+
+  </section>
+
+  <!-- TEAM -->
+  <section id="team" class="section">
+
+    <div class="section-header">
+      <h2 class="section-title">Granted Players</h2>
+      <p class="section-sub">Staff &amp; Admins</p>
+    </div>
+
+    <div class="team-group">
+      <div class="team-group-label">👑 Owners</div>
+      <div class="team-grid" id="owners-grid"></div>
+    </div>
+
+    <div class="team-group">
+      <div class="team-group-label">🛡️ Developers</div>
+      <div class="team-grid" id="developers-grid"></div>
+    </div>
+
+  </section>
+
+  <!-- CONTACT -->
+  <section id="report" class="section">
+
+    <div class="section-header">
+      <h2 class="section-title">Contact Us</h2>
+      <p class="section-sub">Questions, concerns, or just want to reach out?</p>
+    </div>
+
+    <div class="contact-card">
+      <p>Have a question, report, or just want to reach out? Fill out our contact form and we'll get back to you soon.</p>
+      <a
+        href="https://docs.google.com/forms/d/e/1FAIpQLScNp40OGekYFQvGH0PqdDGbnIYupUMlus8DTVrnO0b54m-lAw/viewform"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="contact-btn"
+      >Open Contact Form →</a>
+    </div>
+
+  </section>
+
+</main>
+
+<script>
+  function showTab(id, btn) {
+    document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+    btn.classList.add('active');
+  }
+
+  function copyCode() {
+    const code = document.getElementById('serverCode').textContent;
+    navigator.clipboard.writeText(code).then(() => {
+      const btn = document.querySelector('.copy-btn');
+      btn.textContent = 'Copied!';
+      setTimeout(() => btn.textContent = 'Copy', 2000);
+    });
+  }
+
+  // Load team from team.json
+  fetch('team.json')
+    .then(r => r.json())
+    .then(data => {
+      const ownersGrid = document.getElementById('owners-grid');
+      const devsGrid = document.getElementById('developers-grid');
+
+      data.owners.forEach(m => {
+        ownersGrid.innerHTML += `<div class="member-card owner">
+          <div class="member-name">${m.name}</div>
+          <div class="member-role">${m.role}</div>
+        </div>`;
+      });
+
+      data.developers.forEach(m => {
+        devsGrid.innerHTML += `<div class="member-card">
+          <div class="member-name">${m.name}</div>
+          <div class="member-role">${m.role}</div>
+        </div>`;
+      });
+    })
+    .catch(() => {
+      document.getElementById('owners-grid').innerHTML = '<p style="color:var(--muted)">Could not load team data.</p>';
+    });
+</script>
+
+</body>
+</html>
