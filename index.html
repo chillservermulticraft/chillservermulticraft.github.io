@@ -4,9 +4,9 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta property="og:title" content="Chill Server" />
-  <meta property="og:description" content="IUIOFJRN" />
+  <meta property="og:description" content="IOVPFHVO" />
   <meta property="og:image" content="spawn.png" />
-  <meta name="theme-color" content="#00eeff" />
+  <meta name="theme-color" content=#00eeff />
   <title>Chill Server</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet" />
@@ -21,17 +21,44 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --bg:       #1a1a2e;
-      --surface:  #22223b;
-      --surface2: #2d2d4a;
-      --border:   #3a3a5c;
-      --accent:   #a8dadc;
-      --accent2:  #c9b8f5;
-      --warm:     #f4a261;
-      --text:     #e8e6f0;
-      --muted:    #8888aa;
+      --theme: #00ff00;
+      --bg: #0f1020;
+      --accent: var(--theme);
+      --accent2: color-mix(in srgb, var(--theme) 70%, white 30%);
+      --accent-soft: color-mix(in srgb, var(--theme) 65%, white 35%);
+      --accent-faint: color-mix(in srgb, var(--theme) 30%, transparent);
+      --surface: color-mix(in srgb, var(--theme) 8%, #22223b);
+      --surface2: color-mix(in srgb, var(--theme) 14%, #2d2d4a);
+      --border: color-mix(in srgb, var(--theme) 25%, #3a3a5c);
+      --warm: color-mix(in srgb, var(--theme) 60%, orange 40%);
+      --text: #e8e6f0;
+      --muted: #8888aa;
       --font:     'MultiCraft', 'Nunito', sans-serif;
       --font-mc:  'MultiCraft', 'Nunito', sans-serif;
+    }
+
+    body.light {
+      /* warm soft background (not white) */
+      --bg: #eef1f6;
+
+      /* slightly softened dark text (less harsh than pure #000) */
+      --text: #1f2430;
+
+      /* muted text with blue-gray tone */
+      --muted: #5c657a;
+
+      /* soft card surfaces (barely white, slightly gray-blue) */
+      --surface: #ffffff;
+      --surface2: #f3f6fb;
+
+      /* very subtle borders (barely visible, modern look) */
+      --border: rgba(30, 40, 60, 0.08);
+
+      /* keep theme but tone it down so it doesn't glow too hard */
+      --accent: var(--theme);
+      --accent2: color-mix(in srgb, var(--theme) 45%, #2a2f3a 55%);
+
+      --warm: color-mix(in srgb, var(--theme) 40%, #ffb07a 60%);
     }
 
     html { scroll-behavior: smooth; }
@@ -132,7 +159,7 @@
       font-size: clamp(3rem, 9vw, 6rem);
       line-height: 1.05;
       margin-bottom: 1.2rem;
-      background: linear-gradient(135deg, var(--accent) 0%, var(--accent2) 100%);
+      background: linear-gradient(135deg, var(--accent), #ffffff);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
@@ -226,9 +253,7 @@
       flex: 1; min-width: 190px;
     }
     .member-card:hover {
-      border-color: var(--accent2);
-      background: var(--surface2);
-      transform: translateY(-2px);
+      border-color: var(--accent);
     }
     .member-card.owner:hover { border-color: var(--warm); }
 
@@ -292,6 +317,7 @@
     <button class="tab-btn active" onclick="showTab('intro', this)">Home</button>
     <button class="tab-btn" onclick="showTab('team', this)">Team</button>
     <button class="tab-btn" onclick="showTab('report', this)">Contact</button>
+    <button class="tab-btn" onclick="toggleTheme()" id="themeBtn">🌙</button>
   </div>
 </nav>
 
@@ -304,7 +330,7 @@
 
     <div class="hero-code">
       <span class="hero-code-label">Server Code</span>
-      <span class="hero-code-value" id="serverCode">IUIOFJRN</span>
+      <span class="hero-code-value" id="serverCode">IOVPFHVO</span>
       <button class="copy-btn" onclick="copyCode()">Copy</button>
     </div>
 
@@ -315,7 +341,7 @@
     </div>
 
     <div class="intro-body">
-      <p>Join our server! Use code <strong style="color:var(--accent2)">IUIOFJRN</strong> to hop in.</p>
+      <p>Join our server! Use code <strong style="color:var(--accent2)">IOVPFHVO</strong> to hop in.</p>
     </div>
 
   </section>
@@ -370,6 +396,36 @@
       setTimeout(() => btn.textContent = 'Copy', 2000);
     });
   }
+
+  function updateMetaColor() {
+    const color = getComputedStyle(document.documentElement)
+      .getPropertyValue('--theme')
+      .trim();
+
+    document.querySelector('meta[name="theme-color"]').setAttribute("content", color);
+  }
+
+  function setTheme(color) {
+    document.documentElement.style.setProperty('--theme', color);
+    updateMetaColor();
+  }
+
+  function setThemeMode(mode) {
+    document.body.classList.toggle("light", mode === "light");
+    localStorage.setItem("themeMode", mode);
+
+    const btn = document.getElementById("themeBtn");
+    btn.textContent = mode === "light" ? "☀️" : "🌙";
+  }
+
+  function toggleTheme() {
+    const isLight = document.body.classList.contains("light");
+    setThemeMode(isLight ? "dark" : "light");
+  }
+
+  // load saved theme (DEFAULT = dark)
+  const saved = localStorage.getItem("themeMode") || "dark";
+  setThemeMode(saved);
 
   // Load team from team.json
   fetch('team.json')

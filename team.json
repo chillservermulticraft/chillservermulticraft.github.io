@@ -2,7 +2,7 @@
   {
     "label": "Owner",
     "emoji": "👑",
-    "color": "#000000",
+    "color": "#FFD700",
     "members": [
       { "name": "x9jm", "role": "Owner" },
       { "name": "-ImM_ALExX-", "role": "Owner" }
@@ -11,7 +11,7 @@
   {
     "label": "Co-Owner",
     "emoji": "👑",
-    "color": "#ff0000",
+    "color": "#FF8C00",
     "members": [
       { "name": "Astxn", "role": "Co-Owner" }
     ]
@@ -19,7 +19,7 @@
   {
     "label": "Manager",
     "emoji": "⚒️",
-    "color": "#00eeff",
+    "color": "#00BFFF",
     "members": [
       { "name": "MultiCoolStudios", "role": "Manager" },
       { "name": "Sugarbear", "role": "Manager" }
@@ -28,7 +28,7 @@
   {
     "label": "Admin",
     "emoji": "🔥",
-    "color": "#00eeff",
+    "color": "#FF3B3B",
     "members": [
       { "name": "YoursJules", "role": "Admin" }
     ]
@@ -36,7 +36,7 @@
   {
     "label": "Developer",
     "emoji": "⛏️",
-    "color": "#00eeff",
+    "color": "#8A2BE2",
     "members": [
       { "name": "Covasius", "role": "Developer" }
     ]
@@ -44,7 +44,7 @@
   {
     "label": "SeniorStaff",
     "emoji": "🗡️",
-    "color": "#00eeff",
+    "color": "#32CD32",
     "members": [
       { "name": "THE_UNSTOPPABLE", "role": "SeniorStaff" },
       { "name": "nebula", "role": "SeniorStaff" }
@@ -53,7 +53,7 @@
   {
     "label": "Staff",
     "emoji": "🛡️",
-    "color": "#00eeff",
+    "color": "#1E90FF",
     "members": [
       { "name": "a5x_", "role": "Staff" },
       { "name": "Joshua_tofye", "role": "Staff" },
