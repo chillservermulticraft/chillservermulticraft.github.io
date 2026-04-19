@@ -1,22 +1,84 @@
 [
   {
-    "label": "Owners", "emoji": "👑", "color": "#00eeff",
+    "label": "Owner",
+    "emoji": "👑",
+    "color": "#000000",
     "members": [
-      { "name": "Astxn",  "role": "Owner" },
-      { "name": "Denis",  "role": "Owner" }
+      { "name": "x9jm", "role": "Owner" },
+      { "name": "-ImM_ALExX-", "role": "Owner" }
     ]
   },
   {
-    "label": "Managers", "emoji": "⭐", "color": "#00eeff",
+    "label": "Co-Owner",
+    "emoji": "👑",
+    "color": "#ff0000",
     "members": [
-      { "name": "MultiCoolStudios", "role": "Manager" }
+      { "name": "Astxn", "role": "Co-Owner" }
     ]
   },
   {
-    "label": "Developers", "emoji": "🛠️", "color": "#00eeff",
+    "label": "Manager",
+    "emoji": "⚒️",
+    "color": "#00eeff",
     "members": [
-      { "name": "x9jm", "role": "Developer" },
+      { "name": "MultiCoolStudios", "role": "Manager" },
+      { "name": "Sugarbear", "role": "Manager" }
+    ]
+  },
+  {
+    "label": "Admin",
+    "emoji": "🔥",
+    "color": "#00eeff",
+    "members": [
+      { "name": "YoursJules", "role": "Admin" }
+    ]
+  },
+  {
+    "label": "Developer",
+    "emoji": "⛏️",
+    "color": "#00eeff",
+    "members": [
       { "name": "Covasius", "role": "Developer" }
+    ]
+  },
+  {
+    "label": "SeniorStaff",
+    "emoji": "🗡️",
+    "color": "#00eeff",
+    "members": [
+      { "name": "THE_UNSTOPPABLE", "role": "SeniorStaff" },
+      { "name": "nebula", "role": "SeniorStaff" }
+    ]
+  },
+  {
+    "label": "Staff",
+    "emoji": "🛡️",
+    "color": "#00eeff",
+    "members": [
+      { "name": "a5x_", "role": "Staff" },
+      { "name": "Joshua_tofye", "role": "Staff" },
+      { "name": "RealAffan", "role": "Staff" },
+      { "name": "Chess_queen", "role": "Staff" },
+      { "name": "dangerous", "role": "Staff" },
+      { "name": "Zaire-", "role": "Staff" },
+      { "name": "Minori", "role": "Staff" },
+      { "name": "Andreaa", "role": "Staff" },
+      { "name": "-_Kayla_-", "role": "Staff" },
+      { "name": "King-sonic", "role": "Staff" },
+      { "name": "_-AaMinA-_", "role": "Staff" },
+      { "name": "Jake_the_crator", "role": "Staff" }
+    ]
+  },
+  {
+    "label": "Helper",
+    "emoji": "❗",
+    "color": "#00eeff",
+    "members": [
+      { "name": "AntonioZga9", "role": "Helper" },
+      { "name": "Caelum", "role": "Helper" },
+      { "name": "Hannabelle_", "role": "Helper" },
+      { "name": "LingLing", "role": "Helper" },
+      { "name": "Fred", "role": "Helper" }
     ]
   }
 ]
