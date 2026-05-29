@@ -30,7 +30,7 @@
     "emoji": "🔥",
     "color": "#FF3B3B",
     "members": [
-      
+      { "name": "Sassafras", "role": "Admin" },
     ]
   },
   {
@@ -67,7 +67,6 @@
       { "name": "King-sonic", "role": "Staff" },
       { "name": "_-AaMinA-_", "role": "Staff" },
       { "name": "Jake_the_crator", "role": "Staff" },
-      { "name": "Sassafras", "role": "Staff" },
       { "name": "YoursJules", "role": "Staff" },
       { "name": "AntonioZga9", "role": "Helper" },
     ]
